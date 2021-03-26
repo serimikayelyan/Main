@@ -1,4 +1,5 @@
 import time
-for i in range(10):
+print("hellloooasfgadfgsdgsooo")
+for i in range(5):
     print (i)
     time.sleep(0.5)
