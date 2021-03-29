@@ -29,8 +29,6 @@ jobs:
       - name: ls cwd
         run: pwd; ls -l ./
       - name: print token
-        env:
-          TOKEN: ${{ github.token }}
-        run: echo "$TOKEN"
+        run: echo "${{ github.token }}"
       - name: runn test.py
         run: python ./test/test.py
