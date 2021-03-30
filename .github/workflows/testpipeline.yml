@@ -11,6 +11,11 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      my_input:
+        description: 'Input?'
+        required: true
+        default: 'MyFoo'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,8 +33,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: ls cwd
         run: pwd; ls -l ./
-      - name: print token
-        run: echo "${{ github.token }}"
+      - name: print input
+        run: echo "${{ github.event.inputs.my_input }}"
+      - name: print all inputs
+        run: echo "${{ github.event.inputs }}"
       - name: runn test.py
         run: python ./test/test.py
   one:
