@@ -45,8 +45,8 @@ jobs:
         run: echo "$JOB_CONTEXT"
       - name: Dump secrets context
         env:
-          JOB_CONTEXT: ${{ toJSON(secrets) }}
-        run: echo "$JOB_CONTEXT"
+          SECRETS_CONTEXT: ${{ toJSON(secrets) }}
+        run: echo "$SECRETS_CONTEXT"
       - name: Dump steps context
         env:
           STEPS_CONTEXT: ${{ toJSON(steps) }}
