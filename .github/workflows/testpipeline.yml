@@ -56,6 +56,13 @@ jobs:
         env:
           SECRETS_CONTEXT: ${{ toJSON(secrets) }}
         run: echo "$SECRETS_CONTEXT"
+      - name: echo secret containing
+        env:
+          TOKEN: ${{ secrets.SECRET_1 }}
+        run: echo "$TOKEN"
+      - name: check token existance
+        if: ${{ secrets.SECRET_1 == 'SECRET_1' }}
+        run: echo "${{ secret.SECRET_1 }}mysec"
       - name: Dump steps context
         env:
           STEPS_CONTEXT: ${{ toJSON(steps) }}
