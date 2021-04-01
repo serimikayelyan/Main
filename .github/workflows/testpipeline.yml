@@ -64,7 +64,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.SECRET_1 }}
         if: env.TOKEN == "SECRET_1"
-        run: echo "${{ secret.SECRET_1 }}mysec"
+        run: echo "${{ secrets.SECRET_1 }}mysec"
       - name: Dump steps context
         env:
           STEPS_CONTEXT: ${{ toJSON(steps) }}
