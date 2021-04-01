@@ -61,7 +61,9 @@ jobs:
           TOKEN: ${{ secrets.SECRET_1 }}
         run: echo "$TOKEN"
       - name: check token existance
-        if: ${{ secrets.SECRET_1 == 'SECRET_1' }}
+        env:
+          TOKEN: ${{ secrets.SECRET_1 }}
+        if: env.TOKEN == "SECRET_1"
         run: echo "${{ secret.SECRET_1 }}mysec"
       - name: Dump steps context
         env:
