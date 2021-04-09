@@ -17,18 +17,18 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    #defaults:
-    #  run:
-    #    shell: bash
-    #    working-directory: test
-    # The type of runner that the job will run on
+    defaults:
+      run:
+        shell: bash
+        working-directory: test
+     The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+    #  - name: Dump GitHub context
+    #    env:
+    #      GITHUB_CONTEXT: ${{ toJSON(github) }}
+    #    run: echo "$GITHUB_CONTEXT"
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
@@ -37,13 +37,13 @@ jobs:
       # Runs a single command using the runners shell
       - name: ls cwd
         run: pwd; ls -l ./
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: dump secrets
-        env:
-          SECRETS_CONTEXT: ${{ toJSON(secrets) }}
-        run: echo "$SECRETS_CONTEXT"
+     # - name: Dump GitHub context
+     #   env:
+     #     GITHUB_CONTEXT: ${{ toJSON(github) }}
+     #   run: echo "$GITHUB_CONTEXT"
+     # - name: dump secrets
+     #   env:
+     #     SECRETS_CONTEXT: ${{ toJSON(secrets) }}
+     #   run: echo "$SECRETS_CONTEXT"
       - name: run test.py
         run: python ./test.py
