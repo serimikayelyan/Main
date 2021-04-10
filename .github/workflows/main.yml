@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-private-key
-          path: ./testkey
+          path: test/testkey
       - name: ls cwd
         run: pwd; ls -l ./
      # - name: Dump GitHub context
