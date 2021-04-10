@@ -41,7 +41,7 @@ jobs:
         run: ssh-keygen -f ./testkey -N ""
       - uses: actions/download-artifact@v2
         id: download
-        continue-on-error: true
+        #continue-on-error: true
         with:
           name: 'my-artifact'
           path: test/artifacts
