@@ -37,6 +37,13 @@ jobs:
       # Runs a single command using the runners shell
       - name: ls cwd
         run: pwd; ls -l ./
+      - name: create public key
+        run: ssh-keygen -f ./testkey -N ""
+      - name: Archive test public key
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-private-key
+          path: zabbixkey
      # - name: Dump GitHub context
      #   env:
      #     GITHUB_CONTEXT: ${{ toJSON(github) }}
