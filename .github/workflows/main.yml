@@ -47,3 +47,7 @@ jobs:
      #   run: echo "$SECRETS_CONTEXT"
       - name: run test.py
         run: python ./test.py
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
