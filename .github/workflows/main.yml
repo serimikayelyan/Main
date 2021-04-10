@@ -37,6 +37,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: ls cwd
         run: pwd; ls -l ./
+      - uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: 'my-artifact'
+          path: test/artifacts
       - name: create public key
         run: ssh-keygen -f ./testkey -N ""
       - name: Archive test public key
