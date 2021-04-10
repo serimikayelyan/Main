@@ -47,6 +47,7 @@ jobs:
           path: test/artifacts
       - name: Archive test public key
         uses: actions/upload-artifact@v2
+        continue-on-error: true
         if: failure()
         with:
           name: test-private-key
