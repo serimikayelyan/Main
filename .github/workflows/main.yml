@@ -61,6 +61,7 @@ jobs:
           cat << EOF > sshkey
           ${{ secrets.SSH_PRIVATE_KEY }}
           EOF
+          chmod 400 ./sshkey
           ssh-keygen -y -f ./sshkey -N "" > sshkey.pub
       - name: Archive ssh public key
         uses: actions/upload-artifact@v2
