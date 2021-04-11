@@ -59,8 +59,7 @@ jobs:
         #if: steps.check-key-existance.outputs.OUTPUT == 0
         run: |
           cat <<EOF > sshkey
-          ${{ secrets.SSH_PRIVATE_KEY }}
-          EOF &&
+          ${{ secrets.SSH_PRIVATE_KEY }}EOF &&
           ssh-keygen -y -f ./sshkey -N "" > sshkey.pub
       - name: Archive ssh public key
         uses: actions/upload-artifact@v2
