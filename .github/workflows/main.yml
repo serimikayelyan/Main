@@ -37,18 +37,24 @@ jobs:
       # Runs a single command using the runners shell
       - name: ls cwd
         run: pwd; ls -l ./
-      - name: create public key
-        run: ssh-keygen -f ./testkey -N ""
+      
       - uses: actions/download-artifact@v2
         id: download
-        #continue-on-error: true
+        continue-on-error: true
         with:
-          name: 'my-artifact'
+          name: test-private-key
           path: test/artifacts
+      - name: check ssh key existance
+        id: check-key-existance
+        run: |
+          OUTPUT=0; if [[ -f "./testkey" ]]; then OUTPUT=1; fi &&
+          echo "::set-output name=OUTPUT::$OUTPUT"
+      - name: create public key
+        if: steps.check-key-existance.outputs.OUTPUT == 0
+        run: ssh-keygen -f ./testkey -N ""
       - name: Archive test public key
         uses: actions/upload-artifact@v2
-        continue-on-error: true
-        if: failure()
+        if: steps.check-key-existance.outputs.OUTPUT == 0
         with:
           name: test-private-key
           path: test/testkey
