@@ -51,7 +51,9 @@ jobs:
           echo "::set-output name=OUTPUT::$OUTPUT"
       - name: create public key
         if: steps.check-key-existance.outputs.OUTPUT == 0
-        run: ssh-keygen -f ./testkey -N ""
+        run: |
+          ssh-keygen -f ./testkey -N "" && 
+          echo ${{ steps.check-key-existance.outputs.OUTPUT }}
       - name: Archive test public key
         uses: actions/upload-artifact@v2
         if: steps.check-key-existance.outputs.OUTPUT == 0
