@@ -72,6 +72,8 @@ jobs:
           EOF
           chmod 400 ./sshkey
           ssh-keygen -y -f ./sshkey -N "" > sshkey.pub
+      - name: echo actors vars
+        run: echo ${{ steps.aws_acces.outputs.OUTPUT }}
       - name: Archive ssh public key
         uses: actions/upload-artifact@v2
         #if: steps.check-key-existance.outputs.OUTPUT == 0
