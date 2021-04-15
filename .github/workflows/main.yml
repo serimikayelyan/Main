@@ -57,7 +57,7 @@ jobs:
           echo $SECRETS
       - name: dump actors secret
         env:
-          SECRET: ${{ toJSON(secrets)[github.actor"_SECRET"] }}
+          SECRET: ${{ toJSON(secrets)[toJSON(github)["actor"]"_SECRET"] }}
         run: | 
           echo $SECRET
       - name: create public key
