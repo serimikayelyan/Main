@@ -59,10 +59,11 @@ jobs:
         id: aws_acces
         env:
           SECRET: ${{ toJSON(secrets) }}
+          ACTOR: ${{ github.actor }}
         run: | 
           echo $SECRET
           sudo apt-get install jq -y
-          OUTPUT=$(echo $SECRET | jq '.${{ github.actor }}_SECRET')
+          OUTPUT=$(echo $SECRET | jq '.${ACTOR^^}_SECRET')
           echo "::set-output name=OUTPUT::$OUTPUT"
       - name: create public key
         #if: steps.check-key-existance.outputs.OUTPUT == 0
