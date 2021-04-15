@@ -63,7 +63,7 @@ jobs:
         run: | 
           echo $SECRET
           sudo apt-get install jq -y
-          OUTPUT=$(echo $SECRET | jq '.${ACTOR^^}_SECRET')
+          OUTPUT=$(echo $SECRET | jq --arg act "${ACTOR^^}_SECRET" '.[$act]')
           echo "::set-output name=OUTPUT::$OUTPUT"
       - name: create public key
         #if: steps.check-key-existance.outputs.OUTPUT == 0
