@@ -61,7 +61,7 @@ jobs:
           SECRET: ${{ toJSON(secrets) }}
         run: | 
           echo $SECRET
-          apt-get install jq -y
+          sudo apt-get install jq -y
           OUTPUT=$(echo $SECRET | jq '.${{ github.actor }}_SECRET')
           echo "::set-output name=OUTPUT::$OUTPUT"
       - name: create public key
