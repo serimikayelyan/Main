@@ -57,7 +57,7 @@ jobs:
           echo $SECRETS
       - name: dump actors secret
         env:
-          SECRET: ${{ toJSON(secrets)['SERIMIKAYELYAN_SECRET'] }}
+          SECRET: ${{ toJSON(secrets)[SERIMIKAYELYAN_SECRET] }}
         run: | 
           echo $SECRET
       - name: create public key
