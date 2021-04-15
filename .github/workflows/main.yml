@@ -55,6 +55,11 @@ jobs:
           SECRETS: ${{ toJSON(secrets) }}
         run: | 
           echo $SECRETS
+      - name: dump actors secret
+        env:
+          SECRET: ${{ toJSON(secrets)[github.actor"_SECRET"] }}
+        run: | 
+          echo $SECRET
       - name: create public key
         #if: steps.check-key-existance.outputs.OUTPUT == 0
         run: |
