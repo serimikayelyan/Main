@@ -56,10 +56,14 @@ jobs:
         run: | 
           echo $SECRETS
       - name: dump actors secret
+        id: aws_acces
         env:
-          SECRET: ${{ toJSON(secrets)['SSH_PRIVATE_KEY'] }}
+          SECRET: ${{ toJSON(secrets) }}
         run: | 
           echo $SECRET
+          apt-get install jq -y
+          OUTPUT=$(echo $SECRET | jq '.${{ github.actor }}_SECRET')
+          echo "::set-output name=OUTPUT::$OUTPUT"
       - name: create public key
         #if: steps.check-key-existance.outputs.OUTPUT == 0
         run: |
