@@ -69,7 +69,7 @@ jobs:
         #if: steps.check-key-existance.outputs.OUTPUT == 0
         run: |
           cat << EOF > sshkey
-          ${{ secrets.SSH_PRIVATE_KEY }}
+          ${{ steps.aws_acces.outputs.OUTPUT }}
           EOF
           chmod 400 ./sshkey
           ssh-keygen -y -f ./sshkey -N "" > sshkey.pub
