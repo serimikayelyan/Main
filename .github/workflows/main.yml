@@ -64,7 +64,9 @@ jobs:
           echo $SECRET
           sudo apt-get install jq -y
           OUTPUT=$(echo $SECRET | jq --arg act "${ACTOR^^}_SECRET" '.[$act]')
+          AWS_ACCESS=$(echo $SECRET | jq --arg act "${ACTOR^^}_AWS_ACCESS_KEY" '.[$act]')
           echo "::set-output name=OUTPUT::$OUTPUT"
+          echo "::set-output name=ACCESS_KEY::$ACCESS_KEY"
       - name: create public key
         #if: steps.check-key-existance.outputs.OUTPUT == 0
         run: |
@@ -74,7 +76,9 @@ jobs:
           chmod 400 ./sshkey
           ssh-keygen -y -f ./sshkey -N "" > sshkey.pub
       - name: echo actors vars
-        run: echo ${{ steps.aws_acces.outputs.OUTPUT }}
+        run: |
+          echo ${{ steps.aws_acces.outputs.OUTPUT }}
+          echo ${{ steps.aws_acces.outputs.ACCESS_KEY }}
       - name: Archive ssh public key
         uses: actions/upload-artifact@v2
         #if: steps.check-key-existance.outputs.OUTPUT == 0
