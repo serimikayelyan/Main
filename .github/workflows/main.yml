@@ -17,7 +17,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    environment: test_env_1
+    environment: ${{ github.actor }}_environment
     defaults:
       run:
         shell: bash
@@ -26,10 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    #  - name: Dump GitHub context
-    #    env:
-    #      GITHUB_CONTEXT: ${{ toJSON(github) }}
-    #    run: echo "$GITHUB_CONTEXT"
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
